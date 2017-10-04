@@ -8,7 +8,7 @@
         public static T? AsNullable<T>(this Option<T> option) where T : struct =>
             option.HasValue ? option.Value : (T?) null;
 
-        public static Option<T> TryCast<T>(this object value) where T : class =>
-            (value as T).ToOption();
+        public static Option<T> TryCast<T>(this object value) =>
+            value is T convertedValue ? convertedValue.ToOption() : Option<T>.None();
     }
 }
